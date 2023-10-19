@@ -2,6 +2,7 @@
 
 set -e
 
-COMPOSE_FILE=./.devcontainer/docker-compose.yml
+. "./bin/shared.lib.sh"
 
+log "🐳 Starting services configured in ${COMPOSE_FILE}..."
 docker compose --file "${COMPOSE_FILE}" up "${@}"

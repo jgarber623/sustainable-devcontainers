@@ -2,7 +2,13 @@
 
 set -e
 
-COMPOSE_FILE=./.devcontainer/docker-compose.yml
+. "./bin/shared.lib.sh"
+
+# Set default service if none is provided.
 SERVICE=app
 
-docker compose --file "${COMPOSE_FILE}" exec ${SERVICE} ${@}
+# Set default command if none is provided.
+COMMAND="${@:-/bin/bash}"
+
+log "🤖 Executing command \"${COMMAND}\" within running ${SERVICE} container..."
+docker compose --file "${COMPOSE_FILE}" exec ${SERVICE} ${COMMAND}
