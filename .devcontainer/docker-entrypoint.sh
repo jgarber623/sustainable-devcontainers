@@ -4,7 +4,8 @@ set -e
 
 cat <<-"PROMPT"
 
-📦 Welcome to sustainable-devcontainers!
+📦 🐳
+Welcome to sustainable-devcontainers!
 
 PROMPT
 
