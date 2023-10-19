@@ -13,7 +13,13 @@
   // with a unique name to group its customizations.
   //
   // The only known subproperty for this is `vscode`.
-  "customizations": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "EditorConfig.EditorConfig"
+      ]
+    }
+  },
 
   // The path of the workspace folder inside the container.
   //
