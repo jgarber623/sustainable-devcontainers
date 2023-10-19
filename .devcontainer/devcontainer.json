@@ -1,0 +1,39 @@
+// This file is a JSONC file, so LOL comments! Visual Studio Code treats it that
+// way, at least.
+//
+// Schema definition: https://containers.dev/implementors/json_schema/
+{
+  // A name for the dev container which can be displayed to the user.
+  "name": "sustainable-devcontainers",
+
+  // Features to add to the dev container. Sure.
+  "features": {},
+
+  // Tool-specific configuration. Each tool should use a JSON object subproperty
+  // with a unique name to group its customizations.
+  //
+  // The only known subproperty for this is `vscode`.
+  "customizations": {},
+
+  // The path of the workspace folder inside the container.
+  //
+  // Should match the volume mount defined in `docker-compose.yml`.
+  "workspaceFolder": "/workspace",
+
+  // The name of the docker-compose file(s) used to start the services.
+  //
+  // Path should be relative to the current file, as far as I can tell.
+  "dockerComposeFile": "docker-compose.yml",
+
+  // The service you want to work on. This is considered the primary container
+  // for your dev environment which your editor will connect to.
+  //
+  // In other words, which service's skin should Visual Studio Code wear?
+  "service": "app",
+
+  // A command to run after creating the container.
+  //
+  // A setup script makes the most sense here. Install dependencies, migrate
+  // databases, etc. etc. etc.
+  "postCreateCommand": "bin/setup"
+}

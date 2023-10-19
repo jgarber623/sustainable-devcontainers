@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+COMPOSE_FILE=./.devcontainer/docker-compose.yml
+SERVICE=app
+
+docker compose --file "${COMPOSE_FILE}" exec ${SERVICE} ${@}

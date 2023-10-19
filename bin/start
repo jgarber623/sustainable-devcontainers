@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+COMPOSE_FILE=./.devcontainer/docker-compose.yml
+
+docker compose --file "${COMPOSE_FILE}" up "${@}"

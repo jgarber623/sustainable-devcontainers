@@ -1,0 +1,27 @@
+services:
+  app:
+    # Docker shouldn't try to pull, but just in case, namespace the image under
+    # my Docker Hub username.
+    image: jgarber623/sustainable-devcontainers
+    # Specify context up one level and use the full path relative to the project
+    # root to the Dockerfile in this folder.
+    build:
+      context: ..
+      dockerfile: ./.devcontainer/Dockerfile
+    container_name: sustainable-devcontainers-app
+    # Faster container shutdowns!
+    init: true
+    # Using an entrypoint file to display any helpful informative information
+    # and passing the whole path relative to the project root.
+    entrypoint: ./.devcontainer/docker-entrypoint.sh
+    ports:
+      - "8080:8080"
+    volumes:
+      - type: bind
+        source: ..
+        target: /workspace
+        consistency: cached
+
+networks:
+  default:
+    name: sustainable-devcontainers-network
