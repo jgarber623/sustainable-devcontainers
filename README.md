@@ -11,6 +11,17 @@
 5. Run `bin/exec bin/dev` to start the application.
 6. Navigate to http://localhost:8080 in your Web browser of choice.
 
+> [!NOTE]\
+> If you invoked `bin/start -- --detach`, you may stop the app's services by running `bin/stop`.
+
+When working directly via Docker, you may issue any command within the running `app` service by invoking `bin/exec` followed by the command:
+
+```sh
+bin/exec whoami
+```
+
+Running `bin/exec` _without_ a command will load a Bash prompt.
+
 ### 💾 Visual Studio Code
 
 1. Install and run [Visual Studio Code](https://code.visualstudio.com).
@@ -22,6 +33,11 @@
 7. Re-open the Terminal pane if necessary (`Cmd-J` on macOS).
 8. At the prompt, run `bin/dev` to start the application.
 9. Click "Open in Browser" in the notificaton box to launch the website.
+
+> [!NOTE]\
+> In this workflow, the `bin/exec`, `bin/start`, and `bin/stop` scripts are unnecessary. Visual Studio Code handles these tasks for you when choosing to "Reopen in Container."
+
+To exit the Dev Containers workflow, open the Command Palette (`Cmd-Shift-P` on macOS) and search for "Reopen Folder Locally."
 
 ### ☁️ GitHub Codespaces
 
