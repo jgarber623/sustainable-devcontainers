@@ -2,9 +2,12 @@
 
 set -e
 
-. "./bin/shared.lib.sh"
+DIRNAME=$(dirname -- "${0}")
+SCRIPT_DIR=$(cd -- "${DIRNAME}" > /dev/null 2>&1 && pwd)
 
-run_within_docker
+. "${SCRIPT_DIR}"/shared.lib.sh
+
+run_within_docker $@
 
 log "📦 Installing project dependencies..."
 npm clean-install

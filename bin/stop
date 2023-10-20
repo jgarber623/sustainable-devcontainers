@@ -7,29 +7,19 @@ SCRIPT_DIR=$(cd -- "${DIRNAME}" > /dev/null 2>&1 && pwd)
 
 . "${SCRIPT_DIR}"/shared.lib.sh
 
-# Set default service if none is provided.
-SERVICE=app
-
 usage() {
   cat << EOF
 
-Execute a command inside a running container.
+Stop services configured in ${COMPOSE_FILE}.
 
 $(title USAGE)
-  bin/exec [-h, --help] [-s SERVICE, --service=SERVICE] COMMAND
+  bin/stop [-h, --help]
 
 $(title OPTIONS)
-  -h, --help                      Show this help.
-  -s SERVICE, --service=SERVICE   Specify the Docker Compose service name for the command.
-                                  (default: ${SERVICE})
-
-$(title ARGUMENTS)
-  COMMAND   A command line to execute within the container.
+  -h, --help   Show this help.
 
 $(title EXAMPLES)
-  bin/exec                     Log in to a Bash prompt.
-  bin/exec bin/setup           Run the app's setup script.
-  bin/exec -s db npm install   Run a command in the db service container.
+  bin/stop -- --dry-run   Run this script and pass the '--dry-run' flag to Docker.
 
 EOF
 }
@@ -37,7 +27,7 @@ EOF
 # Support short options, long options, and double dash termination.
 #
 # Derived from: https://stackoverflow.com/a/28466267
-while getopts :hs:-: OPT; do
+while getopts :h-: OPT; do
   # Support long options by reformulating OPT and OPTARG.
   if [ "${OPT}" = "-" ]; then
     OPT="${OPTARG%%=*}"      # Extract long option name
@@ -46,9 +36,6 @@ while getopts :hs:-: OPT; do
   fi
 
   case "${OPT}" in
-    s | service)
-      SERVICE="${OPTARG}"
-      ;;
     h | help)
       usage
       exit
@@ -65,10 +52,7 @@ while getopts :hs:-: OPT; do
 done
 shift $((OPTIND-1)) # Remove parsed options and args from $@ list.
 
-# Set default command if none is provided.
-COMMAND="${@:-/usr/bin/env bash}"
-
 check_for_docker
 
-log "🤖 Executing command \"${COMMAND}\" within running \"${SERVICE}\" container..."
-docker compose --file "${COMPOSE_FILE}" exec ${SERVICE} ${COMMAND}
+log "🐳 Stopping development environment..."
+docker compose --file "${COMPOSE_FILE}" down "${@}"
