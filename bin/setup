@@ -4,5 +4,7 @@ set -e
 
 . "./bin/shared.lib.sh"
 
+run_within_docker
+
 log "📦 Installing project dependencies..."
 npm clean-install
