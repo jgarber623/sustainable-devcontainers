@@ -25,7 +25,7 @@ Running `bin/exec` _without_ a command will load a Bash prompt.
 ### 💾 Visual Studio Code
 
 1. Install and run [Visual Studio Code](https://code.visualstudio.com).
-2. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers.).
+2. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
 3. Clone this repository using either the command above or directly in Visual Studio Code.
 4. If it isn't already, open the project's folder in Visual Studio Code.
 5. When prompted, click "Reopen in Container" in the notification box.
