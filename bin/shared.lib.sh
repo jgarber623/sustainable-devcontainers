@@ -40,6 +40,7 @@ run_within_docker() {
 
     if [ "${yn}" = "y" ]; then
       "${BIN_DIR}"/exec $0 $@
+      exit
     else
       exit 1
     fi
